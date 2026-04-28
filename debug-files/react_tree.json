@@ -1,0 +1,2226 @@
+{
+  "name": "div",
+  "props": "[Complex Object]",
+  "children": [
+    {
+      "name": "Vmt",
+      "props": {
+        "widget": {
+          "type": "Card",
+          "padding": {
+            "left": 6,
+            "right": 4,
+            "y": 5
+          },
+          "background": {
+            "light": "#1c1c1c",
+            "dark": "#1c1c1c"
+          },
+          "theme": "dark",
+          "children": [
+            {
+              "type": "Show",
+              "$when": "state.time_format == '12h'",
+              "children": [
+                {
+                  "type": "RunInterval",
+                  "interval": 1000,
+                  "leadingTick": true,
+                  "$maxTicks": "state.fixed_tick == null ? null : 1",
+                  "$onTickAction": "{\n        \"patchState\": [\n          set(\"time_label\", slice(\"\" + (((int(((state.fixed_tick != null ? state.fixed_tick : tick.now) + 1000 + state.tz_offset_minutes * 60000) / 3600000) % 24 + 11) % 12) + 1), -2) + \":\" + slice(\"0\" + (int(((state.fixed_tick != null ? state.fixed_tick : tick.now) + 1000 + state.tz_offset_minutes * 60000) / 60000) % 60), -2) + \" \" + ((int(((state.fixed_tick != null ? state.fixed_tick : tick.now) + 1000 + state.tz_offset_minutes * 60000) / 3600000) % 24) >= 12 ? \"PM\" : \"AM\")),\n          set(\"second_angle\", (int(((state.fixed_tick != null ? state.fixed_tick : tick.now) + 1000 + state.tz_offset_minutes * 60000) / 1000) % 60) * 6),\n          set(\"minute_angle\", (int(((state.fixed_tick != null ? state.fixed_tick : tick.now) + 1000 + state.tz_offset_minutes * 60000) / 60000) % 60) * 6 + (int(((state.fixed_tick != null ? state.fixed_tick : tick.now) + 1000 + state.tz_offset_minutes * 60000) / 1000) % 60) * 0.1),\n          set(\"hour_angle\", (int(((state.fixed_tick != null ? state.fixed_tick : tick.now) + 1000 + state.tz_offset_minutes * 60000) / 3600000) % 12) * 30 + (int(((state.fixed_tick != null ? state.fixed_tick : tick.now) + 1000 + state.tz_offset_minutes * 60000) / 60000) % 60) * 0.5),\n          set(\"second_transform\", \"rotate(\" + ((int(((state.fixed_tick != null ? state.fixed_tick : tick.now) + 1000 + state.tz_offset_minutes * 60000) / 1000) % 60) * 6) + \"deg)\"),\n          set(\"minute_transform\", \"rotate(\" + ((int(((state.fixed_tick != null ? state.fixed_tick : tick.now) + 1000 + state.tz_offset_minutes * 60000) / 60000) % 60) * 6 + (int(((state.fixed_tick != null ? state.fixed_tick : tick.now) + 1000 + state.tz_offset_minutes * 60000) / 1000) % 60) * 0.1) + \"deg)\"),\n          set(\"hour_transform\", \"rotate(\" + ((int(((state.fixed_tick != null ? state.fixed_tick : tick.now) + 1000 + state.tz_offset_minutes * 60000) / 3600000) % 12) * 30 + (int(((state.fixed_tick != null ? state.fixed_tick : tick.now) + 1000 + state.tz_offset_minutes * 60000) / 60000) % 60) * 0.5) + \"deg)\")\n        ]\n      }"
+                }
+              ]
+            },
+            {
+              "type": "Show",
+              "$when": "state.time_format == '24h'",
+              "children": [
+                {
+                  "type": "RunInterval",
+                  "interval": 1000,
+                  "leadingTick": true,
+                  "$maxTicks": "state.fixed_tick == null ? null : 1",
+                  "$onTickAction": "{\n        \"patchState\": [\n          set(\"time_label\", slice(\"0\" + (int(((state.fixed_tick != null ? state.fixed_tick : tick.now) + 1000 + state.tz_offset_minutes * 60000) / 3600000) % 24), -2) + \":\" + slice(\"0\" + (int(((state.fixed_tick != null ? state.fixed_tick : tick.now) + 1000 + state.tz_offset_minutes * 60000) / 60000) % 60), -2)),\n          set(\"second_angle\", (int(((state.fixed_tick != null ? state.fixed_tick : tick.now) + 1000 + state.tz_offset_minutes * 60000) / 1000) % 60) * 6),\n          set(\"minute_angle\", (int(((state.fixed_tick != null ? state.fixed_tick : tick.now) + 1000 + state.tz_offset_minutes * 60000) / 60000) % 60) * 6 + (int(((state.fixed_tick != null ? state.fixed_tick : tick.now) + 1000 + state.tz_offset_minutes * 60000) / 1000) % 60) * 0.1),\n          set(\"hour_angle\", (int(((state.fixed_tick != null ? state.fixed_tick : tick.now) + 1000 + state.tz_offset_minutes * 60000) / 3600000) % 12) * 30 + (int(((state.fixed_tick != null ? state.fixed_tick : tick.now) + 1000 + state.tz_offset_minutes * 60000) / 60000) % 60) * 0.5),\n          set(\"second_transform\", \"rotate(\" + ((int(((state.fixed_tick != null ? state.fixed_tick : tick.now) + 1000 + state.tz_offset_minutes * 60000) / 1000) % 60) * 6) + \"deg)\"),\n          set(\"minute_transform\", \"rotate(\" + ((int(((state.fixed_tick != null ? state.fixed_tick : tick.now) + 1000 + state.tz_offset_minutes * 60000) / 60000) % 60) * 6 + (int(((state.fixed_tick != null ? state.fixed_tick : tick.now) + 1000 + state.tz_offset_minutes * 60000) / 1000) % 60) * 0.1) + \"deg)\"),\n          set(\"hour_transform\", \"rotate(\" + ((int(((state.fixed_tick != null ? state.fixed_tick : tick.now) + 1000 + state.tz_offset_minutes * 60000) / 3600000) % 12) * 30 + (int(((state.fixed_tick != null ? state.fixed_tick : tick.now) + 1000 + state.tz_offset_minutes * 60000) / 60000) % 60) * 0.5) + \"deg)\")\n        ]\n      }"
+                }
+              ]
+            },
+            {
+              "type": "Row",
+              "align": "center",
+              "justify": "between",
+              "gap": 3,
+              "children": [
+                {
+                  "type": "Col",
+                  "gap": 1.5,
+                  "children": [
+                    {
+                      "type": "Title",
+                      "$value": "state.time_label",
+                      "size": "xl",
+                      "weight": "semibold"
+                    },
+                    {
+                      "type": "Col",
+                      "gap": 0,
+                      "children": [
+                        {
+                          "type": "Text",
+                          "$value": "state.location",
+                          "color": "secondary",
+                          "size": "sm"
+                        },
+                        {
+                          "type": "Show",
+                          "$when": "state.fixed_tick == null",
+                          "children": [
+                            {
+                              "type": "Text",
+                              "$value": "state.relative_offset_label",
+                              "color": "secondary",
+                              "size": "sm"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "Box",
+                  "width": 95,
+                  "height": 95,
+                  "radius": "full",
+                  "background": "transparent",
+                  "style": {
+                    "position": "relative",
+                    "flexShrink": 0
+                  },
+                  "children": [
+                    {
+                      "type": "Box",
+                      "$style": "{ \"position\": \"absolute\", \"top\": \"8%\", \"left\": \"50%\", \"transform\": \"translate(-50%, -50%)\" }",
+                      "children": [
+                        {
+                          "type": "Text",
+                          "$value": "12",
+                          "weight": "semibold",
+                          "color": "base",
+                          "size": "xs"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "Box",
+                      "$style": "{ \"position\": \"absolute\", \"top\": \"6%\", \"left\": \"71%\", \"transform\": \"translate(-50%, -50%)\" }",
+                      "children": [
+                        {
+                          "type": "Text",
+                          "$value": "1",
+                          "weight": "semibold",
+                          "color": "base",
+                          "size": "xs"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "Box",
+                      "$style": "{ \"position\": \"absolute\", \"top\": \"21%\", \"left\": \"86%\", \"transform\": \"translate(-50%, -50%)\" }",
+                      "children": [
+                        {
+                          "type": "Text",
+                          "$value": "2",
+                          "weight": "semibold",
+                          "color": "base",
+                          "size": "xs"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "Box",
+                      "$style": "{ \"position\": \"absolute\", \"top\": \"42%\", \"left\": \"92%\", \"transform\": \"translate(-50%, -50%)\" }",
+                      "children": [
+                        {
+                          "type": "Text",
+                          "$value": "3",
+                          "weight": "semibold",
+                          "color": "base",
+                          "size": "xs"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "Box",
+                      "$style": "{ \"position\": \"absolute\", \"top\": \"63%\", \"left\": \"86%\", \"transform\": \"translate(-50%, -50%)\" }",
+                      "children": [
+                        {
+                          "type": "Text",
+                          "$value": "4",
+                          "weight": "semibold",
+                          "color": "base",
+                          "size": "xs"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "Box",
+                      "$style": "{ \"position\": \"absolute\", \"top\": \"78%\", \"left\": \"71%\", \"transform\": \"translate(-50%, -50%)\" }",
+                      "children": [
+                        {
+                          "type": "Text",
+                          "$value": "5",
+                          "weight": "semibold",
+                          "color": "base",
+                          "size": "xs"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "Box",
+                      "$style": "{ \"position\": \"absolute\", \"top\": \"84%\", \"left\": \"50%\", \"transform\": \"translate(-50%, -50%)\" }",
+                      "children": [
+                        {
+                          "type": "Text",
+                          "$value": "6",
+                          "weight": "semibold",
+                          "color": "base",
+                          "size": "xs"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "Box",
+                      "$style": "{ \"position\": \"absolute\", \"top\": \"78%\", \"left\": \"29%\", \"transform\": \"translate(-50%, -50%)\" }",
+                      "children": [
+                        {
+                          "type": "Text",
+                          "$value": "7",
+                          "weight": "semibold",
+                          "color": "base",
+                          "size": "xs"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "Box",
+                      "$style": "{ \"position\": \"absolute\", \"top\": \"63%\", \"left\": \"14%\", \"transform\": \"translate(-50%, -50%)\" }",
+                      "children": [
+                        {
+                          "type": "Text",
+                          "$value": "8",
+                          "weight": "semibold",
+                          "color": "base",
+                          "size": "xs"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "Box",
+                      "$style": "{ \"position\": \"absolute\", \"top\": \"42%\", \"left\": \"8%\", \"transform\": \"translate(-50%, -50%)\" }",
+                      "children": [
+                        {
+                          "type": "Text",
+                          "$value": "9",
+                          "weight": "semibold",
+                          "color": "base",
+                          "size": "xs"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "Box",
+                      "$style": "{ \"position\": \"absolute\", \"top\": \"21%\", \"left\": \"14%\", \"transform\": \"translate(-50%, -50%)\" }",
+                      "children": [
+                        {
+                          "type": "Text",
+                          "$value": "10",
+                          "weight": "semibold",
+                          "color": "base",
+                          "size": "xs"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "Box",
+                      "$style": "{ \"position\": \"absolute\", \"top\": \"6%\", \"left\": \"29%\", \"transform\": \"translate(-50%, -50%)\" }",
+                      "children": [
+                        {
+                          "type": "Text",
+                          "$value": "11",
+                          "weight": "semibold",
+                          "color": "base",
+                          "size": "xs"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "Box",
+                      "$style": "{ \"position\": \"absolute\", \"top\": \"42%\", \"left\": \"50%\", \"width\": \"2px\", \"height\": \"8px\", \"background\": \"#f5f5f5\", \"transformOrigin\": \"50% 100%\", \"zIndex\": 4, \"transform\": \"translate(-50%, -100%) \" + state.hour_transform }"
+                    },
+                    {
+                      "type": "Box",
+                      "$style": "{ \"position\": \"absolute\", \"top\": \"42%\", \"left\": \"50%\", \"width\": \"4px\", \"height\": \"24px\", \"background\": \"#f5f5f5\", \"borderRadius\": \"999px\", \"transformOrigin\": \"50% 100%\", \"zIndex\": 4, \"transform\": \"translate(-50%, -100%) \" + state.hour_transform + \"translateY(-5px)\" }"
+                    },
+                    {
+                      "type": "Box",
+                      "$style": "{ \"position\": \"absolute\", \"top\": \"42%\", \"left\": \"50%\", \"width\": \"2px\", \"height\": \"8px\", \"background\": \"#f5f5f5\", \"transformOrigin\": \"50% 100%\", \"zIndex\": 4, \"transform\": \"translate(-50%, -100%) \" + state.minute_transform }"
+                    },
+                    {
+                      "type": "Box",
+                      "$style": "{ \"position\": \"absolute\", \"top\": \"42%\", \"left\": \"50%\", \"width\": \"4px\", \"height\": \"36px\", \"background\": \"#f5f5f5\", \"borderRadius\": \"999px\", \"transformOrigin\": \"50% 100%\", \"zIndex\": 4, \"transform\": \"translate(-50%, -100%) \" + state.minute_transform + \"translateY(-5px)\" }"
+                    },
+                    {
+                      "type": "Show",
+                      "$when": "state.fixed_tick == null",
+                      "children": [
+                        {
+                          "type": "Box",
+                          "$style": "{ \"position\": \"absolute\", \"top\": \"42%\", \"left\": \"50%\", \"width\": \"2px\", \"height\": \"50px\", \"background\": \"var(--red-300)\", \"transformOrigin\": \"50% 100%\", \"zIndex\": 5, \"transform\": \"translate(-50%, -100%) \" + state.second_transform + \"translateY(6px)\" }"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "Box",
+                      "style": {
+                        "position": "absolute",
+                        "top": "42%",
+                        "left": "50%",
+                        "width": "6px",
+                        "height": "6px",
+                        "background": "white",
+                        "borderRadius": "999px",
+                        "transform": "translate(-50%, -50%)",
+                        "zIndex": 4
+                      }
+                    },
+                    {
+                      "type": "Box",
+                      "style": {
+                        "position": "absolute",
+                        "top": "42%",
+                        "left": "50%",
+                        "width": "4px",
+                        "height": "4px",
+                        "background": "var(--orange-300)",
+                        "borderRadius": "999px",
+                        "transform": "translate(-50%, -50%)",
+                        "zIndex": 6
+                      }
+                    },
+                    {
+                      "type": "Box",
+                      "style": {
+                        "position": "absolute",
+                        "top": "42%",
+                        "left": "50%",
+                        "width": "2px",
+                        "height": "2px",
+                        "background": "white",
+                        "borderRadius": "999px",
+                        "transform": "translate(-50%, -50%)",
+                        "zIndex": 6
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "initialState": {
+            "location": "Singapore, Singapore (SGT)",
+            "time_format": "24h",
+            "tz_offset_minutes": 480,
+            "relative_offset_label": "Today, +0hrs",
+            "fixed_tick": null,
+            "time_label": "23:57",
+            "hour_angle": 358.5,
+            "minute_angle": 342.9,
+            "second_angle": 54,
+            "hour_transform": "rotate(358.5deg)",
+            "minute_transform": "rotate(342.9deg)",
+            "second_transform": "rotate(54deg)"
+          }
+        },
+        "streaming": false,
+        "preferNativeControls": false,
+        "theme": "dark",
+        "ref": {
+          "current": "function()"
+        },
+        "onError": "function()",
+        "onAction": "function()"
+      },
+      "children": [
+        {
+          "name": "zmt",
+          "props": {
+            "streaming": false,
+            "preferNativeControls": false,
+            "initialState": {
+              "location": "Singapore, Singapore (SGT)",
+              "time_format": "24h",
+              "tz_offset_minutes": 480,
+              "relative_offset_label": "Today, +0hrs",
+              "fixed_tick": null,
+              "time_label": "23:57",
+              "hour_angle": 358.5,
+              "minute_angle": 342.9,
+              "second_angle": 54,
+              "hour_transform": "rotate(358.5deg)",
+              "minute_transform": "rotate(342.9deg)",
+              "second_transform": "rotate(54deg)"
+            },
+            "ref": {
+              "current": "function()"
+            },
+            "onError": "function()",
+            "onAction": "function()",
+            "theme": "dark",
+            "usePointerDown": false
+          },
+          "children": [
+            {
+              "name": "i6e",
+              "props": {
+                "locale": "en-US"
+              },
+              "children": [
+                {
+                  "name": "e",
+                  "props": {
+                    "defaultLocale": "en-US",
+                    "locale": "en-US",
+                    "messages": {}
+                  },
+                  "children": [
+                    {
+                      "name": "react.context",
+                      "props": {
+                        "value": {
+                          "formats": {},
+                          "messages": {},
+                          "defaultLocale": "en-US",
+                          "defaultFormats": {},
+                          "fallbackOnEmptyString": true,
+                          "onError": "function()",
+                          "onWarn": "function()",
+                          "locale": "en-US",
+                          "formatters": {
+                            "getDateTimeFormat": "function()",
+                            "getNumberFormat": "function()",
+                            "getMessageFormat": "function()",
+                            "getRelativeTimeFormat": "function()",
+                            "getPluralRules": "function()",
+                            "getListFormat": "function()",
+                            "getDisplayNames": "function()"
+                          },
+                          "formatNumber": "function()",
+                          "formatNumberToParts": "function()",
+                          "formatRelativeTime": "function()",
+                          "formatDate": "function()",
+                          "formatDateToParts": "function()",
+                          "formatTime": "function()",
+                          "formatDateTimeRange": "function()",
+                          "formatTimeToParts": "function()",
+                          "formatPlural": "function()",
+                          "formatMessage": "function()",
+                          "$t": "function()",
+                          "formatList": "function()",
+                          "formatListToParts": "function()",
+                          "formatDisplayName": "function()"
+                        }
+                      },
+                      "children": [
+                        {
+                          "name": "react.context",
+                          "props": {
+                            "value": {
+                              "streaming": false,
+                              "evaluate": "function()",
+                              "useNameToIdStore": "function()",
+                              "useWidgetStateStore": "function()",
+                              "theme": "dark",
+                              "onError": "function()",
+                              "onAction": "function()",
+                              "onStateMutation": "function()",
+                              "mapboxAccessToken": null,
+                              "setRootWidgetElement": "function()",
+                              "activeBreakpoints": [],
+                              "getActiveBreakpointValue": "function()",
+                              "preferNativeControls": false,
+                              "usePointerDown": false
+                            }
+                          },
+                          "children": [
+                            {
+                              "name": "div",
+                              "props": {
+                                "className": "VJTtF",
+                                "dir": "auto",
+                                "data-theme": "dark"
+                              },
+                              "children": [
+                                {
+                                  "name": "jmt",
+                                  "props": {
+                                    "initialState": {
+                                      "location": "Singapore, Singapore (SGT)",
+                                      "time_format": "24h",
+                                      "tz_offset_minutes": 480,
+                                      "relative_offset_label": "Today, +0hrs",
+                                      "fixed_tick": null,
+                                      "time_label": "23:57",
+                                      "hour_angle": 358.5,
+                                      "minute_angle": 342.9,
+                                      "second_angle": 54,
+                                      "hour_transform": "rotate(358.5deg)",
+                                      "minute_transform": "rotate(342.9deg)",
+                                      "second_transform": "rotate(54deg)"
+                                    }
+                                  },
+                                  "children": [
+                                    {
+                                      "name": "react.context",
+                                      "props": {
+                                        "value": {
+                                          "__stateDefaults": {
+                                            "location": "Singapore, Singapore (SGT)",
+                                            "time_format": "24h",
+                                            "tz_offset_minutes": 480,
+                                            "relative_offset_label": "Today, +0hrs",
+                                            "fixed_tick": null,
+                                            "time_label": "23:57",
+                                            "hour_angle": 358.5,
+                                            "minute_angle": 342.9,
+                                            "second_angle": 54,
+                                            "hour_transform": "rotate(358.5deg)",
+                                            "minute_transform": "rotate(342.9deg)",
+                                            "second_transform": "rotate(54deg)"
+                                          }
+                                        }
+                                      },
+                                      "children": [
+                                        {
+                                          "name": "qht",
+                                          "props": {
+                                            "padding": {
+                                              "left": 6,
+                                              "right": 4,
+                                              "y": 5
+                                            },
+                                            "background": {
+                                              "light": "#1c1c1c",
+                                              "dark": "#1c1c1c"
+                                            },
+                                            "theme": "dark",
+                                            "initialState": {
+                                              "location": "Singapore, Singapore (SGT)",
+                                              "time_format": "24h",
+                                              "tz_offset_minutes": 480,
+                                              "relative_offset_label": "Today, +0hrs",
+                                              "fixed_tick": null,
+                                              "time_label": "23:57",
+                                              "hour_angle": 358.5,
+                                              "minute_angle": 342.9,
+                                              "second_angle": 54,
+                                              "hour_transform": "rotate(358.5deg)",
+                                              "minute_transform": "rotate(342.9deg)",
+                                              "second_transform": "rotate(54deg)"
+                                            }
+                                          },
+                                          "children": [
+                                            {
+                                              "name": "Sn",
+                                              "props": {
+                                                "as": "div",
+                                                "ref": "function()",
+                                                "className": "_7usgN",
+                                                "data-w-container": "card",
+                                                "data-size": "sm",
+                                                "data-theme": "dark",
+                                                "theme": "dark",
+                                                "padding": {
+                                                  "left": 6,
+                                                  "right": 4,
+                                                  "y": 5
+                                                },
+                                                "background": {
+                                                  "light": "#1c1c1c",
+                                                  "dark": "#1c1c1c"
+                                                }
+                                              },
+                                              "children": [
+                                                {
+                                                  "name": "div",
+                                                  "props": {
+                                                    "ref": "function()",
+                                                    "className": "wkCU- _7usgN",
+                                                    "data-w-direction": "col",
+                                                    "data-w-auto-spacing": "",
+                                                    "style": {
+                                                      "--smoothing-background-color": "#1c1c1c",
+                                                      "--w-box-gutter-block-start": "1.25rem",
+                                                      "--w-box-gutter-block-end": "1.25rem",
+                                                      "--w-box-gutter-inline-start": "1.5rem",
+                                                      "--w-box-gutter-inline-end": "1rem",
+                                                      "paddingBlockStart": "1.25rem",
+                                                      "paddingBlockEnd": "1.25rem",
+                                                      "paddingInlineStart": "1.5rem",
+                                                      "paddingInlineEnd": "1rem",
+                                                      "background": "#1c1c1c"
+                                                    },
+                                                    "data-w-container": "card",
+                                                    "data-size": "sm",
+                                                    "data-theme": "dark"
+                                                  },
+                                                  "children": [
+                                                    {
+                                                      "name": "Dj",
+                                                      "props": {
+                                                        "$when": "state.time_format == '12h'"
+                                                      }
+                                                    },
+                                                    {
+                                                      "name": "Dj",
+                                                      "props": {
+                                                        "$when": "state.time_format == '24h'"
+                                                      },
+                                                      "children": [
+                                                        {
+                                                          "name": "o7t",
+                                                          "props": {
+                                                            "interval": 1000,
+                                                            "leadingTick": true,
+                                                            "$maxTicks": "state.fixed_tick == null ? null : 1",
+                                                            "$onTickAction": "{\n        \"patchState\": [\n          set(\"time_label\", slice(\"0\" + (int(((state.fixed_tick != null ? state.fixed_tick : tick.now) + 1000 + state.tz_offset_minutes * 60000) / 3600000) % 24), -2) + \":\" + slice(\"0\" + (int(((state.fixed_tick != null ? state.fixed_tick : tick.now) + 1000 + state.tz_offset_minutes * 60000) / 60000) % 60), -2)),\n          set(\"second_angle\", (int(((state.fixed_tick != null ? state.fixed_tick : tick.now) + 1000 + state.tz_offset_minutes * 60000) / 1000) % 60) * 6),\n          set(\"minute_angle\", (int(((state.fixed_tick != null ? state.fixed_tick : tick.now) + 1000 + state.tz_offset_minutes * 60000) / 60000) % 60) * 6 + (int(((state.fixed_tick != null ? state.fixed_tick : tick.now) + 1000 + state.tz_offset_minutes * 60000) / 1000) % 60) * 0.1),\n          set(\"hour_angle\", (int(((state.fixed_tick != null ? state.fixed_tick : tick.now) + 1000 + state.tz_offset_minutes * 60000) / 3600000) % 12) * 30 + (int(((state.fixed_tick != null ? state.fixed_tick : tick.now) + 1000 + state.tz_offset_minutes * 60000) / 60000) % 60) * 0.5),\n          set(\"second_transform\", \"rotate(\" + ((int(((state.fixed_tick != null ? state.fixed_tick : tick.now) + 1000 + state.tz_offset_minutes * 60000) / 1000) % 60) * 6) + \"deg)\"),\n          set(\"minute_transform\", \"rotate(\" + ((int(((state.fixed_tick != null ? state.fixed_tick : tick.now) + 1000 + state.tz_offset_minutes * 60000) / 60000) % 60) * 6 + (int(((state.fixed_tick != null ? state.fixed_tick : tick.now) + 1000 + state.tz_offset_minutes * 60000) / 1000) % 60) * 0.1) + \"deg)\"),\n          set(\"hour_transform\", \"rotate(\" + ((int(((state.fixed_tick != null ? state.fixed_tick : tick.now) + 1000 + state.tz_offset_minutes * 60000) / 3600000) % 12) * 30 + (int(((state.fixed_tick != null ? state.fixed_tick : tick.now) + 1000 + state.tz_offset_minutes * 60000) / 60000) % 60) * 0.5) + \"deg)\")\n        ]\n      }"
+                                                          }
+                                                        }
+                                                      ]
+                                                    },
+                                                    {
+                                                      "name": "Sfe",
+                                                      "props": {
+                                                        "align": "center",
+                                                        "justify": "between",
+                                                        "gap": 3
+                                                      },
+                                                      "children": [
+                                                        {
+                                                          "name": "Sn",
+                                                          "props": {
+                                                            "as": "div",
+                                                            "data-w-component": "row",
+                                                            "direction": "row",
+                                                            "align": "center",
+                                                            "justify": "between",
+                                                            "gap": 3
+                                                          },
+                                                          "children": [
+                                                            {
+                                                              "name": "div",
+                                                              "props": {
+                                                                "className": "wkCU-",
+                                                                "data-w-direction": "row",
+                                                                "data-w-align": "center",
+                                                                "data-w-justify": "between",
+                                                                "style": {
+                                                                  "gap": "0.75rem"
+                                                                },
+                                                                "data-w-component": "row"
+                                                              },
+                                                              "children": [
+                                                                {
+                                                                  "name": "kfe",
+                                                                  "props": {
+                                                                    "gap": 1.5
+                                                                  },
+                                                                  "children": [
+                                                                    {
+                                                                      "name": "Sn",
+                                                                      "props": {
+                                                                        "as": "div",
+                                                                        "data-w-component": "col",
+                                                                        "direction": "col",
+                                                                        "gap": 1.5
+                                                                      },
+                                                                      "children": [
+                                                                        {
+                                                                          "name": "div",
+                                                                          "props": {
+                                                                            "className": "wkCU-",
+                                                                            "data-w-direction": "col",
+                                                                            "style": {
+                                                                              "gap": "0.375rem"
+                                                                            },
+                                                                            "data-w-component": "col"
+                                                                          },
+                                                                          "children": [
+                                                                            {
+                                                                              "name": "D3t",
+                                                                              "props": {
+                                                                                "$value": "state.time_label",
+                                                                                "size": "xl",
+                                                                                "weight": "semibold"
+                                                                              },
+                                                                              "children": [
+                                                                                {
+                                                                                  "name": "B3t",
+                                                                                  "props": {
+                                                                                    "size": "xl",
+                                                                                    "weight": "semibold",
+                                                                                    "value": "19:22",
+                                                                                    "domProps": {}
+                                                                                  },
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": "h3",
+                                                                                      "props": {
+                                                                                        "className": "LE23f",
+                                                                                        "data-w-component": "title",
+                                                                                        "data-w-weight": "semibold",
+                                                                                        "data-w-size": "xl",
+                                                                                        "style": {}
+                                                                                      }
+                                                                                    }
+                                                                                  ]
+                                                                                }
+                                                                              ]
+                                                                            },
+                                                                            {
+                                                                              "name": "kfe",
+                                                                              "props": {
+                                                                                "gap": 0
+                                                                              },
+                                                                              "children": [
+                                                                                {
+                                                                                  "name": "Sn",
+                                                                                  "props": {
+                                                                                    "as": "div",
+                                                                                    "data-w-component": "col",
+                                                                                    "direction": "col",
+                                                                                    "gap": 0
+                                                                                  },
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": "div",
+                                                                                      "props": {
+                                                                                        "className": "wkCU-",
+                                                                                        "data-w-direction": "col",
+                                                                                        "style": {
+                                                                                          "gap": "0rem"
+                                                                                        },
+                                                                                        "data-w-component": "col"
+                                                                                      },
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": "yoe",
+                                                                                          "props": {
+                                                                                            "$value": "state.location",
+                                                                                            "color": "secondary",
+                                                                                            "size": "sm"
+                                                                                          },
+                                                                                          "children": [
+                                                                                            {
+                                                                                              "name": "xoe",
+                                                                                              "props": {
+                                                                                                "color": "secondary",
+                                                                                                "size": "sm",
+                                                                                                "value": "Singapore, Singapore (SGT)",
+                                                                                                "domProps": {}
+                                                                                              },
+                                                                                              "children": [
+                                                                                                {
+                                                                                                  "name": "p",
+                                                                                                  "props": {
+                                                                                                    "className": "_2o4DE ldtdW",
+                                                                                                    "data-w-component": "text",
+                                                                                                    "data-w-weight": "normal",
+                                                                                                    "data-w-size": "sm",
+                                                                                                    "data-w-whitespace": "linebreaks",
+                                                                                                    "style": {
+                                                                                                      "color": "var(--color-text-secondary)"
+                                                                                                    }
+                                                                                                  }
+                                                                                                }
+                                                                                              ]
+                                                                                            }
+                                                                                          ]
+                                                                                        },
+                                                                                        {
+                                                                                          "name": "Dj",
+                                                                                          "props": {
+                                                                                            "$when": "state.fixed_tick == null"
+                                                                                          },
+                                                                                          "children": [
+                                                                                            {
+                                                                                              "name": "yoe",
+                                                                                              "props": {
+                                                                                                "$value": "state.relative_offset_label",
+                                                                                                "color": "secondary",
+                                                                                                "size": "sm"
+                                                                                              },
+                                                                                              "children": [
+                                                                                                {
+                                                                                                  "name": "xoe",
+                                                                                                  "props": {
+                                                                                                    "color": "secondary",
+                                                                                                    "size": "sm",
+                                                                                                    "value": "Today, +0hrs",
+                                                                                                    "domProps": {}
+                                                                                                  },
+                                                                                                  "children": [
+                                                                                                    {
+                                                                                                      "name": "p",
+                                                                                                      "props": {
+                                                                                                        "className": "_2o4DE ldtdW",
+                                                                                                        "data-w-component": "text",
+                                                                                                        "data-w-weight": "normal",
+                                                                                                        "data-w-size": "sm",
+                                                                                                        "data-w-whitespace": "linebreaks",
+                                                                                                        "style": {
+                                                                                                          "color": "var(--color-text-secondary)"
+                                                                                                        }
+                                                                                                      }
+                                                                                                    }
+                                                                                                  ]
+                                                                                                }
+                                                                                              ]
+                                                                                            }
+                                                                                          ]
+                                                                                        }
+                                                                                      ]
+                                                                                    }
+                                                                                  ]
+                                                                                }
+                                                                              ]
+                                                                            }
+                                                                          ]
+                                                                        }
+                                                                      ]
+                                                                    }
+                                                                  ]
+                                                                },
+                                                                {
+                                                                  "name": "Afe",
+                                                                  "props": {
+                                                                    "width": 95,
+                                                                    "height": 95,
+                                                                    "radius": "full",
+                                                                    "background": "transparent",
+                                                                    "style": {
+                                                                      "position": "relative",
+                                                                      "flexShrink": 0
+                                                                    }
+                                                                  },
+                                                                  "children": [
+                                                                    {
+                                                                      "name": "Sn",
+                                                                      "props": {
+                                                                        "as": "div",
+                                                                        "data-w-component": "box",
+                                                                        "width": 95,
+                                                                        "height": 95,
+                                                                        "radius": "full",
+                                                                        "background": "transparent",
+                                                                        "style": {
+                                                                          "position": "relative",
+                                                                          "flexShrink": 0
+                                                                        }
+                                                                      },
+                                                                      "children": [
+                                                                        {
+                                                                          "name": "div",
+                                                                          "props": {
+                                                                            "className": "wkCU-",
+                                                                            "data-w-direction": "col",
+                                                                            "data-w-auto-spacing": "",
+                                                                            "data-w-has-height": "",
+                                                                            "data-w-has-width": "",
+                                                                            "style": {
+                                                                              "--smoothing-background-color": "transparent",
+                                                                              "borderRadius": "var(--radius-full)",
+                                                                              "height": 95,
+                                                                              "width": 95,
+                                                                              "flexShrink": 0,
+                                                                              "background": "transparent",
+                                                                              "position": "relative"
+                                                                            },
+                                                                            "data-w-component": "box"
+                                                                          },
+                                                                          "children": [
+                                                                            {
+                                                                              "name": "Afe",
+                                                                              "props": {
+                                                                                "$style": "{ \"position\": \"absolute\", \"top\": \"8%\", \"left\": \"50%\", \"transform\": \"translate(-50%, -50%)\" }"
+                                                                              },
+                                                                              "children": [
+                                                                                {
+                                                                                  "name": "Sn",
+                                                                                  "props": {
+                                                                                    "as": "div",
+                                                                                    "data-w-component": "box",
+                                                                                    "style": {
+                                                                                      "position": "absolute",
+                                                                                      "top": "8%",
+                                                                                      "left": "50%",
+                                                                                      "transform": "translate(-50%, -50%)"
+                                                                                    }
+                                                                                  },
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": "div",
+                                                                                      "props": {
+                                                                                        "className": "wkCU-",
+                                                                                        "data-w-direction": "col",
+                                                                                        "data-w-auto-spacing": "",
+                                                                                        "style": {
+                                                                                          "position": "absolute",
+                                                                                          "top": "8%",
+                                                                                          "left": "50%",
+                                                                                          "transform": "translate(-50%, -50%)"
+                                                                                        },
+                                                                                        "data-w-component": "box"
+                                                                                      },
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": "yoe",
+                                                                                          "props": {
+                                                                                            "$value": "12",
+                                                                                            "weight": "semibold",
+                                                                                            "color": "base",
+                                                                                            "size": "xs"
+                                                                                          },
+                                                                                          "children": [
+                                                                                            {
+                                                                                              "name": "xoe",
+                                                                                              "props": {
+                                                                                                "weight": "semibold",
+                                                                                                "color": "base",
+                                                                                                "size": "xs",
+                                                                                                "value": 12,
+                                                                                                "domProps": {}
+                                                                                              },
+                                                                                              "children": [
+                                                                                                {
+                                                                                                  "name": "p",
+                                                                                                  "props": {
+                                                                                                    "className": "_2o4DE ldtdW",
+                                                                                                    "data-w-component": "text",
+                                                                                                    "data-w-weight": "semibold",
+                                                                                                    "data-w-size": "xs",
+                                                                                                    "data-w-whitespace": "linebreaks",
+                                                                                                    "style": {
+                                                                                                      "color": "base"
+                                                                                                    }
+                                                                                                  }
+                                                                                                }
+                                                                                              ]
+                                                                                            }
+                                                                                          ]
+                                                                                        }
+                                                                                      ]
+                                                                                    }
+                                                                                  ]
+                                                                                }
+                                                                              ]
+                                                                            },
+                                                                            {
+                                                                              "name": "Afe",
+                                                                              "props": {
+                                                                                "$style": "{ \"position\": \"absolute\", \"top\": \"6%\", \"left\": \"71%\", \"transform\": \"translate(-50%, -50%)\" }"
+                                                                              },
+                                                                              "children": [
+                                                                                {
+                                                                                  "name": "Sn",
+                                                                                  "props": {
+                                                                                    "as": "div",
+                                                                                    "data-w-component": "box",
+                                                                                    "style": {
+                                                                                      "position": "absolute",
+                                                                                      "top": "6%",
+                                                                                      "left": "71%",
+                                                                                      "transform": "translate(-50%, -50%)"
+                                                                                    }
+                                                                                  },
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": "div",
+                                                                                      "props": {
+                                                                                        "className": "wkCU-",
+                                                                                        "data-w-direction": "col",
+                                                                                        "data-w-auto-spacing": "",
+                                                                                        "style": {
+                                                                                          "position": "absolute",
+                                                                                          "top": "6%",
+                                                                                          "left": "71%",
+                                                                                          "transform": "translate(-50%, -50%)"
+                                                                                        },
+                                                                                        "data-w-component": "box"
+                                                                                      },
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": "yoe",
+                                                                                          "props": {
+                                                                                            "$value": "1",
+                                                                                            "weight": "semibold",
+                                                                                            "color": "base",
+                                                                                            "size": "xs"
+                                                                                          },
+                                                                                          "children": [
+                                                                                            {
+                                                                                              "name": "xoe",
+                                                                                              "props": {
+                                                                                                "weight": "semibold",
+                                                                                                "color": "base",
+                                                                                                "size": "xs",
+                                                                                                "value": 1,
+                                                                                                "domProps": {}
+                                                                                              },
+                                                                                              "children": [
+                                                                                                {
+                                                                                                  "name": "p",
+                                                                                                  "props": {
+                                                                                                    "className": "_2o4DE ldtdW",
+                                                                                                    "data-w-component": "text",
+                                                                                                    "data-w-weight": "semibold",
+                                                                                                    "data-w-size": "xs",
+                                                                                                    "data-w-whitespace": "linebreaks",
+                                                                                                    "style": {
+                                                                                                      "color": "base"
+                                                                                                    }
+                                                                                                  }
+                                                                                                }
+                                                                                              ]
+                                                                                            }
+                                                                                          ]
+                                                                                        }
+                                                                                      ]
+                                                                                    }
+                                                                                  ]
+                                                                                }
+                                                                              ]
+                                                                            },
+                                                                            {
+                                                                              "name": "Afe",
+                                                                              "props": {
+                                                                                "$style": "{ \"position\": \"absolute\", \"top\": \"21%\", \"left\": \"86%\", \"transform\": \"translate(-50%, -50%)\" }"
+                                                                              },
+                                                                              "children": [
+                                                                                {
+                                                                                  "name": "Sn",
+                                                                                  "props": {
+                                                                                    "as": "div",
+                                                                                    "data-w-component": "box",
+                                                                                    "style": {
+                                                                                      "position": "absolute",
+                                                                                      "top": "21%",
+                                                                                      "left": "86%",
+                                                                                      "transform": "translate(-50%, -50%)"
+                                                                                    }
+                                                                                  },
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": "div",
+                                                                                      "props": {
+                                                                                        "className": "wkCU-",
+                                                                                        "data-w-direction": "col",
+                                                                                        "data-w-auto-spacing": "",
+                                                                                        "style": {
+                                                                                          "position": "absolute",
+                                                                                          "top": "21%",
+                                                                                          "left": "86%",
+                                                                                          "transform": "translate(-50%, -50%)"
+                                                                                        },
+                                                                                        "data-w-component": "box"
+                                                                                      },
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": "yoe",
+                                                                                          "props": {
+                                                                                            "$value": "2",
+                                                                                            "weight": "semibold",
+                                                                                            "color": "base",
+                                                                                            "size": "xs"
+                                                                                          },
+                                                                                          "children": [
+                                                                                            {
+                                                                                              "name": "xoe",
+                                                                                              "props": {
+                                                                                                "weight": "semibold",
+                                                                                                "color": "base",
+                                                                                                "size": "xs",
+                                                                                                "value": 2,
+                                                                                                "domProps": {}
+                                                                                              },
+                                                                                              "children": [
+                                                                                                {
+                                                                                                  "name": "p",
+                                                                                                  "props": {
+                                                                                                    "className": "_2o4DE ldtdW",
+                                                                                                    "data-w-component": "text",
+                                                                                                    "data-w-weight": "semibold",
+                                                                                                    "data-w-size": "xs",
+                                                                                                    "data-w-whitespace": "linebreaks",
+                                                                                                    "style": {
+                                                                                                      "color": "base"
+                                                                                                    }
+                                                                                                  }
+                                                                                                }
+                                                                                              ]
+                                                                                            }
+                                                                                          ]
+                                                                                        }
+                                                                                      ]
+                                                                                    }
+                                                                                  ]
+                                                                                }
+                                                                              ]
+                                                                            },
+                                                                            {
+                                                                              "name": "Afe",
+                                                                              "props": {
+                                                                                "$style": "{ \"position\": \"absolute\", \"top\": \"42%\", \"left\": \"92%\", \"transform\": \"translate(-50%, -50%)\" }"
+                                                                              },
+                                                                              "children": [
+                                                                                {
+                                                                                  "name": "Sn",
+                                                                                  "props": {
+                                                                                    "as": "div",
+                                                                                    "data-w-component": "box",
+                                                                                    "style": {
+                                                                                      "position": "absolute",
+                                                                                      "top": "42%",
+                                                                                      "left": "92%",
+                                                                                      "transform": "translate(-50%, -50%)"
+                                                                                    }
+                                                                                  },
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": "div",
+                                                                                      "props": {
+                                                                                        "className": "wkCU-",
+                                                                                        "data-w-direction": "col",
+                                                                                        "data-w-auto-spacing": "",
+                                                                                        "style": {
+                                                                                          "position": "absolute",
+                                                                                          "top": "42%",
+                                                                                          "left": "92%",
+                                                                                          "transform": "translate(-50%, -50%)"
+                                                                                        },
+                                                                                        "data-w-component": "box"
+                                                                                      },
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": "yoe",
+                                                                                          "props": {
+                                                                                            "$value": "3",
+                                                                                            "weight": "semibold",
+                                                                                            "color": "base",
+                                                                                            "size": "xs"
+                                                                                          },
+                                                                                          "children": [
+                                                                                            {
+                                                                                              "name": "xoe",
+                                                                                              "props": {
+                                                                                                "weight": "semibold",
+                                                                                                "color": "base",
+                                                                                                "size": "xs",
+                                                                                                "value": 3,
+                                                                                                "domProps": {}
+                                                                                              },
+                                                                                              "children": [
+                                                                                                {
+                                                                                                  "name": "p",
+                                                                                                  "props": {
+                                                                                                    "className": "_2o4DE ldtdW",
+                                                                                                    "data-w-component": "text",
+                                                                                                    "data-w-weight": "semibold",
+                                                                                                    "data-w-size": "xs",
+                                                                                                    "data-w-whitespace": "linebreaks",
+                                                                                                    "style": {
+                                                                                                      "color": "base"
+                                                                                                    }
+                                                                                                  }
+                                                                                                }
+                                                                                              ]
+                                                                                            }
+                                                                                          ]
+                                                                                        }
+                                                                                      ]
+                                                                                    }
+                                                                                  ]
+                                                                                }
+                                                                              ]
+                                                                            },
+                                                                            {
+                                                                              "name": "Afe",
+                                                                              "props": {
+                                                                                "$style": "{ \"position\": \"absolute\", \"top\": \"63%\", \"left\": \"86%\", \"transform\": \"translate(-50%, -50%)\" }"
+                                                                              },
+                                                                              "children": [
+                                                                                {
+                                                                                  "name": "Sn",
+                                                                                  "props": {
+                                                                                    "as": "div",
+                                                                                    "data-w-component": "box",
+                                                                                    "style": {
+                                                                                      "position": "absolute",
+                                                                                      "top": "63%",
+                                                                                      "left": "86%",
+                                                                                      "transform": "translate(-50%, -50%)"
+                                                                                    }
+                                                                                  },
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": "div",
+                                                                                      "props": {
+                                                                                        "className": "wkCU-",
+                                                                                        "data-w-direction": "col",
+                                                                                        "data-w-auto-spacing": "",
+                                                                                        "style": {
+                                                                                          "position": "absolute",
+                                                                                          "top": "63%",
+                                                                                          "left": "86%",
+                                                                                          "transform": "translate(-50%, -50%)"
+                                                                                        },
+                                                                                        "data-w-component": "box"
+                                                                                      },
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": "yoe",
+                                                                                          "props": {
+                                                                                            "$value": "4",
+                                                                                            "weight": "semibold",
+                                                                                            "color": "base",
+                                                                                            "size": "xs"
+                                                                                          },
+                                                                                          "children": [
+                                                                                            {
+                                                                                              "name": "xoe",
+                                                                                              "props": {
+                                                                                                "weight": "semibold",
+                                                                                                "color": "base",
+                                                                                                "size": "xs",
+                                                                                                "value": 4,
+                                                                                                "domProps": {}
+                                                                                              },
+                                                                                              "children": [
+                                                                                                {
+                                                                                                  "name": "p",
+                                                                                                  "props": {
+                                                                                                    "className": "_2o4DE ldtdW",
+                                                                                                    "data-w-component": "text",
+                                                                                                    "data-w-weight": "semibold",
+                                                                                                    "data-w-size": "xs",
+                                                                                                    "data-w-whitespace": "linebreaks",
+                                                                                                    "style": {
+                                                                                                      "color": "base"
+                                                                                                    }
+                                                                                                  }
+                                                                                                }
+                                                                                              ]
+                                                                                            }
+                                                                                          ]
+                                                                                        }
+                                                                                      ]
+                                                                                    }
+                                                                                  ]
+                                                                                }
+                                                                              ]
+                                                                            },
+                                                                            {
+                                                                              "name": "Afe",
+                                                                              "props": {
+                                                                                "$style": "{ \"position\": \"absolute\", \"top\": \"78%\", \"left\": \"71%\", \"transform\": \"translate(-50%, -50%)\" }"
+                                                                              },
+                                                                              "children": [
+                                                                                {
+                                                                                  "name": "Sn",
+                                                                                  "props": {
+                                                                                    "as": "div",
+                                                                                    "data-w-component": "box",
+                                                                                    "style": {
+                                                                                      "position": "absolute",
+                                                                                      "top": "78%",
+                                                                                      "left": "71%",
+                                                                                      "transform": "translate(-50%, -50%)"
+                                                                                    }
+                                                                                  },
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": "div",
+                                                                                      "props": {
+                                                                                        "className": "wkCU-",
+                                                                                        "data-w-direction": "col",
+                                                                                        "data-w-auto-spacing": "",
+                                                                                        "style": {
+                                                                                          "position": "absolute",
+                                                                                          "top": "78%",
+                                                                                          "left": "71%",
+                                                                                          "transform": "translate(-50%, -50%)"
+                                                                                        },
+                                                                                        "data-w-component": "box"
+                                                                                      },
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": "yoe",
+                                                                                          "props": {
+                                                                                            "$value": "5",
+                                                                                            "weight": "semibold",
+                                                                                            "color": "base",
+                                                                                            "size": "xs"
+                                                                                          },
+                                                                                          "children": [
+                                                                                            {
+                                                                                              "name": "xoe",
+                                                                                              "props": {
+                                                                                                "weight": "semibold",
+                                                                                                "color": "base",
+                                                                                                "size": "xs",
+                                                                                                "value": 5,
+                                                                                                "domProps": {}
+                                                                                              },
+                                                                                              "children": [
+                                                                                                {
+                                                                                                  "name": "p",
+                                                                                                  "props": {
+                                                                                                    "className": "_2o4DE ldtdW",
+                                                                                                    "data-w-component": "text",
+                                                                                                    "data-w-weight": "semibold",
+                                                                                                    "data-w-size": "xs",
+                                                                                                    "data-w-whitespace": "linebreaks",
+                                                                                                    "style": {
+                                                                                                      "color": "base"
+                                                                                                    }
+                                                                                                  }
+                                                                                                }
+                                                                                              ]
+                                                                                            }
+                                                                                          ]
+                                                                                        }
+                                                                                      ]
+                                                                                    }
+                                                                                  ]
+                                                                                }
+                                                                              ]
+                                                                            },
+                                                                            {
+                                                                              "name": "Afe",
+                                                                              "props": {
+                                                                                "$style": "{ \"position\": \"absolute\", \"top\": \"84%\", \"left\": \"50%\", \"transform\": \"translate(-50%, -50%)\" }"
+                                                                              },
+                                                                              "children": [
+                                                                                {
+                                                                                  "name": "Sn",
+                                                                                  "props": {
+                                                                                    "as": "div",
+                                                                                    "data-w-component": "box",
+                                                                                    "style": {
+                                                                                      "position": "absolute",
+                                                                                      "top": "84%",
+                                                                                      "left": "50%",
+                                                                                      "transform": "translate(-50%, -50%)"
+                                                                                    }
+                                                                                  },
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": "div",
+                                                                                      "props": {
+                                                                                        "className": "wkCU-",
+                                                                                        "data-w-direction": "col",
+                                                                                        "data-w-auto-spacing": "",
+                                                                                        "style": {
+                                                                                          "position": "absolute",
+                                                                                          "top": "84%",
+                                                                                          "left": "50%",
+                                                                                          "transform": "translate(-50%, -50%)"
+                                                                                        },
+                                                                                        "data-w-component": "box"
+                                                                                      },
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": "yoe",
+                                                                                          "props": {
+                                                                                            "$value": "6",
+                                                                                            "weight": "semibold",
+                                                                                            "color": "base",
+                                                                                            "size": "xs"
+                                                                                          },
+                                                                                          "children": [
+                                                                                            {
+                                                                                              "name": "xoe",
+                                                                                              "props": {
+                                                                                                "weight": "semibold",
+                                                                                                "color": "base",
+                                                                                                "size": "xs",
+                                                                                                "value": 6,
+                                                                                                "domProps": {}
+                                                                                              },
+                                                                                              "children": [
+                                                                                                {
+                                                                                                  "name": "p",
+                                                                                                  "props": {
+                                                                                                    "className": "_2o4DE ldtdW",
+                                                                                                    "data-w-component": "text",
+                                                                                                    "data-w-weight": "semibold",
+                                                                                                    "data-w-size": "xs",
+                                                                                                    "data-w-whitespace": "linebreaks",
+                                                                                                    "style": {
+                                                                                                      "color": "base"
+                                                                                                    }
+                                                                                                  }
+                                                                                                }
+                                                                                              ]
+                                                                                            }
+                                                                                          ]
+                                                                                        }
+                                                                                      ]
+                                                                                    }
+                                                                                  ]
+                                                                                }
+                                                                              ]
+                                                                            },
+                                                                            {
+                                                                              "name": "Afe",
+                                                                              "props": {
+                                                                                "$style": "{ \"position\": \"absolute\", \"top\": \"78%\", \"left\": \"29%\", \"transform\": \"translate(-50%, -50%)\" }"
+                                                                              },
+                                                                              "children": [
+                                                                                {
+                                                                                  "name": "Sn",
+                                                                                  "props": {
+                                                                                    "as": "div",
+                                                                                    "data-w-component": "box",
+                                                                                    "style": {
+                                                                                      "position": "absolute",
+                                                                                      "top": "78%",
+                                                                                      "left": "29%",
+                                                                                      "transform": "translate(-50%, -50%)"
+                                                                                    }
+                                                                                  },
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": "div",
+                                                                                      "props": {
+                                                                                        "className": "wkCU-",
+                                                                                        "data-w-direction": "col",
+                                                                                        "data-w-auto-spacing": "",
+                                                                                        "style": {
+                                                                                          "position": "absolute",
+                                                                                          "top": "78%",
+                                                                                          "left": "29%",
+                                                                                          "transform": "translate(-50%, -50%)"
+                                                                                        },
+                                                                                        "data-w-component": "box"
+                                                                                      },
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": "yoe",
+                                                                                          "props": {
+                                                                                            "$value": "7",
+                                                                                            "weight": "semibold",
+                                                                                            "color": "base",
+                                                                                            "size": "xs"
+                                                                                          },
+                                                                                          "children": [
+                                                                                            {
+                                                                                              "name": "xoe",
+                                                                                              "props": {
+                                                                                                "weight": "semibold",
+                                                                                                "color": "base",
+                                                                                                "size": "xs",
+                                                                                                "value": 7,
+                                                                                                "domProps": {}
+                                                                                              },
+                                                                                              "children": [
+                                                                                                {
+                                                                                                  "name": "p",
+                                                                                                  "props": {
+                                                                                                    "className": "_2o4DE ldtdW",
+                                                                                                    "data-w-component": "text",
+                                                                                                    "data-w-weight": "semibold",
+                                                                                                    "data-w-size": "xs",
+                                                                                                    "data-w-whitespace": "linebreaks",
+                                                                                                    "style": {
+                                                                                                      "color": "base"
+                                                                                                    }
+                                                                                                  }
+                                                                                                }
+                                                                                              ]
+                                                                                            }
+                                                                                          ]
+                                                                                        }
+                                                                                      ]
+                                                                                    }
+                                                                                  ]
+                                                                                }
+                                                                              ]
+                                                                            },
+                                                                            {
+                                                                              "name": "Afe",
+                                                                              "props": {
+                                                                                "$style": "{ \"position\": \"absolute\", \"top\": \"63%\", \"left\": \"14%\", \"transform\": \"translate(-50%, -50%)\" }"
+                                                                              },
+                                                                              "children": [
+                                                                                {
+                                                                                  "name": "Sn",
+                                                                                  "props": {
+                                                                                    "as": "div",
+                                                                                    "data-w-component": "box",
+                                                                                    "style": {
+                                                                                      "position": "absolute",
+                                                                                      "top": "63%",
+                                                                                      "left": "14%",
+                                                                                      "transform": "translate(-50%, -50%)"
+                                                                                    }
+                                                                                  },
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": "div",
+                                                                                      "props": {
+                                                                                        "className": "wkCU-",
+                                                                                        "data-w-direction": "col",
+                                                                                        "data-w-auto-spacing": "",
+                                                                                        "style": {
+                                                                                          "position": "absolute",
+                                                                                          "top": "63%",
+                                                                                          "left": "14%",
+                                                                                          "transform": "translate(-50%, -50%)"
+                                                                                        },
+                                                                                        "data-w-component": "box"
+                                                                                      },
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": "yoe",
+                                                                                          "props": {
+                                                                                            "$value": "8",
+                                                                                            "weight": "semibold",
+                                                                                            "color": "base",
+                                                                                            "size": "xs"
+                                                                                          },
+                                                                                          "children": [
+                                                                                            {
+                                                                                              "name": "xoe",
+                                                                                              "props": {
+                                                                                                "weight": "semibold",
+                                                                                                "color": "base",
+                                                                                                "size": "xs",
+                                                                                                "value": 8,
+                                                                                                "domProps": {}
+                                                                                              },
+                                                                                              "children": [
+                                                                                                {
+                                                                                                  "name": "p",
+                                                                                                  "props": {
+                                                                                                    "className": "_2o4DE ldtdW",
+                                                                                                    "data-w-component": "text",
+                                                                                                    "data-w-weight": "semibold",
+                                                                                                    "data-w-size": "xs",
+                                                                                                    "data-w-whitespace": "linebreaks",
+                                                                                                    "style": {
+                                                                                                      "color": "base"
+                                                                                                    }
+                                                                                                  }
+                                                                                                }
+                                                                                              ]
+                                                                                            }
+                                                                                          ]
+                                                                                        }
+                                                                                      ]
+                                                                                    }
+                                                                                  ]
+                                                                                }
+                                                                              ]
+                                                                            },
+                                                                            {
+                                                                              "name": "Afe",
+                                                                              "props": {
+                                                                                "$style": "{ \"position\": \"absolute\", \"top\": \"42%\", \"left\": \"8%\", \"transform\": \"translate(-50%, -50%)\" }"
+                                                                              },
+                                                                              "children": [
+                                                                                {
+                                                                                  "name": "Sn",
+                                                                                  "props": {
+                                                                                    "as": "div",
+                                                                                    "data-w-component": "box",
+                                                                                    "style": {
+                                                                                      "position": "absolute",
+                                                                                      "top": "42%",
+                                                                                      "left": "8%",
+                                                                                      "transform": "translate(-50%, -50%)"
+                                                                                    }
+                                                                                  },
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": "div",
+                                                                                      "props": {
+                                                                                        "className": "wkCU-",
+                                                                                        "data-w-direction": "col",
+                                                                                        "data-w-auto-spacing": "",
+                                                                                        "style": {
+                                                                                          "position": "absolute",
+                                                                                          "top": "42%",
+                                                                                          "left": "8%",
+                                                                                          "transform": "translate(-50%, -50%)"
+                                                                                        },
+                                                                                        "data-w-component": "box"
+                                                                                      },
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": "yoe",
+                                                                                          "props": {
+                                                                                            "$value": "9",
+                                                                                            "weight": "semibold",
+                                                                                            "color": "base",
+                                                                                            "size": "xs"
+                                                                                          },
+                                                                                          "children": [
+                                                                                            {
+                                                                                              "name": "xoe",
+                                                                                              "props": {
+                                                                                                "weight": "semibold",
+                                                                                                "color": "base",
+                                                                                                "size": "xs",
+                                                                                                "value": 9,
+                                                                                                "domProps": {}
+                                                                                              },
+                                                                                              "children": [
+                                                                                                {
+                                                                                                  "name": "p",
+                                                                                                  "props": {
+                                                                                                    "className": "_2o4DE ldtdW",
+                                                                                                    "data-w-component": "text",
+                                                                                                    "data-w-weight": "semibold",
+                                                                                                    "data-w-size": "xs",
+                                                                                                    "data-w-whitespace": "linebreaks",
+                                                                                                    "style": {
+                                                                                                      "color": "base"
+                                                                                                    }
+                                                                                                  }
+                                                                                                }
+                                                                                              ]
+                                                                                            }
+                                                                                          ]
+                                                                                        }
+                                                                                      ]
+                                                                                    }
+                                                                                  ]
+                                                                                }
+                                                                              ]
+                                                                            },
+                                                                            {
+                                                                              "name": "Afe",
+                                                                              "props": {
+                                                                                "$style": "{ \"position\": \"absolute\", \"top\": \"21%\", \"left\": \"14%\", \"transform\": \"translate(-50%, -50%)\" }"
+                                                                              },
+                                                                              "children": [
+                                                                                {
+                                                                                  "name": "Sn",
+                                                                                  "props": {
+                                                                                    "as": "div",
+                                                                                    "data-w-component": "box",
+                                                                                    "style": {
+                                                                                      "position": "absolute",
+                                                                                      "top": "21%",
+                                                                                      "left": "14%",
+                                                                                      "transform": "translate(-50%, -50%)"
+                                                                                    }
+                                                                                  },
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": "div",
+                                                                                      "props": {
+                                                                                        "className": "wkCU-",
+                                                                                        "data-w-direction": "col",
+                                                                                        "data-w-auto-spacing": "",
+                                                                                        "style": {
+                                                                                          "position": "absolute",
+                                                                                          "top": "21%",
+                                                                                          "left": "14%",
+                                                                                          "transform": "translate(-50%, -50%)"
+                                                                                        },
+                                                                                        "data-w-component": "box"
+                                                                                      },
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": "yoe",
+                                                                                          "props": {
+                                                                                            "$value": "10",
+                                                                                            "weight": "semibold",
+                                                                                            "color": "base",
+                                                                                            "size": "xs"
+                                                                                          },
+                                                                                          "children": [
+                                                                                            {
+                                                                                              "name": "xoe",
+                                                                                              "props": {
+                                                                                                "weight": "semibold",
+                                                                                                "color": "base",
+                                                                                                "size": "xs",
+                                                                                                "value": 10,
+                                                                                                "domProps": {}
+                                                                                              },
+                                                                                              "children": [
+                                                                                                {
+                                                                                                  "name": "p",
+                                                                                                  "props": {
+                                                                                                    "className": "_2o4DE ldtdW",
+                                                                                                    "data-w-component": "text",
+                                                                                                    "data-w-weight": "semibold",
+                                                                                                    "data-w-size": "xs",
+                                                                                                    "data-w-whitespace": "linebreaks",
+                                                                                                    "style": {
+                                                                                                      "color": "base"
+                                                                                                    }
+                                                                                                  }
+                                                                                                }
+                                                                                              ]
+                                                                                            }
+                                                                                          ]
+                                                                                        }
+                                                                                      ]
+                                                                                    }
+                                                                                  ]
+                                                                                }
+                                                                              ]
+                                                                            },
+                                                                            {
+                                                                              "name": "Afe",
+                                                                              "props": {
+                                                                                "$style": "{ \"position\": \"absolute\", \"top\": \"6%\", \"left\": \"29%\", \"transform\": \"translate(-50%, -50%)\" }"
+                                                                              },
+                                                                              "children": [
+                                                                                {
+                                                                                  "name": "Sn",
+                                                                                  "props": {
+                                                                                    "as": "div",
+                                                                                    "data-w-component": "box",
+                                                                                    "style": {
+                                                                                      "position": "absolute",
+                                                                                      "top": "6%",
+                                                                                      "left": "29%",
+                                                                                      "transform": "translate(-50%, -50%)"
+                                                                                    }
+                                                                                  },
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": "div",
+                                                                                      "props": {
+                                                                                        "className": "wkCU-",
+                                                                                        "data-w-direction": "col",
+                                                                                        "data-w-auto-spacing": "",
+                                                                                        "style": {
+                                                                                          "position": "absolute",
+                                                                                          "top": "6%",
+                                                                                          "left": "29%",
+                                                                                          "transform": "translate(-50%, -50%)"
+                                                                                        },
+                                                                                        "data-w-component": "box"
+                                                                                      },
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": "yoe",
+                                                                                          "props": {
+                                                                                            "$value": "11",
+                                                                                            "weight": "semibold",
+                                                                                            "color": "base",
+                                                                                            "size": "xs"
+                                                                                          },
+                                                                                          "children": [
+                                                                                            {
+                                                                                              "name": "xoe",
+                                                                                              "props": {
+                                                                                                "weight": "semibold",
+                                                                                                "color": "base",
+                                                                                                "size": "xs",
+                                                                                                "value": 11,
+                                                                                                "domProps": {}
+                                                                                              },
+                                                                                              "children": [
+                                                                                                {
+                                                                                                  "name": "p",
+                                                                                                  "props": {
+                                                                                                    "className": "_2o4DE ldtdW",
+                                                                                                    "data-w-component": "text",
+                                                                                                    "data-w-weight": "semibold",
+                                                                                                    "data-w-size": "xs",
+                                                                                                    "data-w-whitespace": "linebreaks",
+                                                                                                    "style": {
+                                                                                                      "color": "base"
+                                                                                                    }
+                                                                                                  }
+                                                                                                }
+                                                                                              ]
+                                                                                            }
+                                                                                          ]
+                                                                                        }
+                                                                                      ]
+                                                                                    }
+                                                                                  ]
+                                                                                }
+                                                                              ]
+                                                                            },
+                                                                            {
+                                                                              "name": "Afe",
+                                                                              "props": {
+                                                                                "$style": "{ \"position\": \"absolute\", \"top\": \"42%\", \"left\": \"50%\", \"width\": \"2px\", \"height\": \"8px\", \"background\": \"#f5f5f5\", \"transformOrigin\": \"50% 100%\", \"zIndex\": 4, \"transform\": \"translate(-50%, -100%) \" + state.hour_transform }"
+                                                                              },
+                                                                              "children": [
+                                                                                {
+                                                                                  "name": "Sn",
+                                                                                  "props": {
+                                                                                    "as": "div",
+                                                                                    "data-w-component": "box",
+                                                                                    "style": {
+                                                                                      "position": "absolute",
+                                                                                      "top": "42%",
+                                                                                      "left": "50%",
+                                                                                      "width": "2px",
+                                                                                      "height": "8px",
+                                                                                      "background": "#f5f5f5",
+                                                                                      "transformOrigin": "50% 100%",
+                                                                                      "zIndex": 4,
+                                                                                      "transform": "translate(-50%, -100%) rotate(221deg)"
+                                                                                    }
+                                                                                  },
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": "div",
+                                                                                      "props": {
+                                                                                        "className": "wkCU-",
+                                                                                        "data-w-direction": "col",
+                                                                                        "data-w-auto-spacing": "",
+                                                                                        "style": {
+                                                                                          "height": "8px",
+                                                                                          "width": "2px",
+                                                                                          "background": "#f5f5f5",
+                                                                                          "position": "absolute",
+                                                                                          "top": "42%",
+                                                                                          "left": "50%",
+                                                                                          "transformOrigin": "50% 100%",
+                                                                                          "zIndex": 4,
+                                                                                          "transform": "translate(-50%, -100%) rotate(221deg)"
+                                                                                        },
+                                                                                        "data-w-component": "box"
+                                                                                      }
+                                                                                    }
+                                                                                  ]
+                                                                                }
+                                                                              ]
+                                                                            },
+                                                                            {
+                                                                              "name": "Afe",
+                                                                              "props": {
+                                                                                "$style": "{ \"position\": \"absolute\", \"top\": \"42%\", \"left\": \"50%\", \"width\": \"4px\", \"height\": \"24px\", \"background\": \"#f5f5f5\", \"borderRadius\": \"999px\", \"transformOrigin\": \"50% 100%\", \"zIndex\": 4, \"transform\": \"translate(-50%, -100%) \" + state.hour_transform + \"translateY(-5px)\" }"
+                                                                              },
+                                                                              "children": [
+                                                                                {
+                                                                                  "name": "Sn",
+                                                                                  "props": {
+                                                                                    "as": "div",
+                                                                                    "data-w-component": "box",
+                                                                                    "style": {
+                                                                                      "position": "absolute",
+                                                                                      "top": "42%",
+                                                                                      "left": "50%",
+                                                                                      "width": "4px",
+                                                                                      "height": "24px",
+                                                                                      "background": "#f5f5f5",
+                                                                                      "borderRadius": "999px",
+                                                                                      "transformOrigin": "50% 100%",
+                                                                                      "zIndex": 4,
+                                                                                      "transform": "translate(-50%, -100%) rotate(221deg)translateY(-5px)"
+                                                                                    }
+                                                                                  },
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": "div",
+                                                                                      "props": {
+                                                                                        "className": "wkCU-",
+                                                                                        "data-w-direction": "col",
+                                                                                        "data-w-auto-spacing": "",
+                                                                                        "style": {
+                                                                                          "height": "24px",
+                                                                                          "width": "4px",
+                                                                                          "background": "#f5f5f5",
+                                                                                          "position": "absolute",
+                                                                                          "top": "42%",
+                                                                                          "left": "50%",
+                                                                                          "borderRadius": "999px",
+                                                                                          "transformOrigin": "50% 100%",
+                                                                                          "zIndex": 4,
+                                                                                          "transform": "translate(-50%, -100%) rotate(221deg)translateY(-5px)"
+                                                                                        },
+                                                                                        "data-w-component": "box"
+                                                                                      }
+                                                                                    }
+                                                                                  ]
+                                                                                }
+                                                                              ]
+                                                                            },
+                                                                            {
+                                                                              "name": "Afe",
+                                                                              "props": {
+                                                                                "$style": "{ \"position\": \"absolute\", \"top\": \"42%\", \"left\": \"50%\", \"width\": \"2px\", \"height\": \"8px\", \"background\": \"#f5f5f5\", \"transformOrigin\": \"50% 100%\", \"zIndex\": 4, \"transform\": \"translate(-50%, -100%) \" + state.minute_transform }"
+                                                                              },
+                                                                              "children": [
+                                                                                {
+                                                                                  "name": "Sn",
+                                                                                  "props": {
+                                                                                    "as": "div",
+                                                                                    "data-w-component": "box",
+                                                                                    "style": {
+                                                                                      "position": "absolute",
+                                                                                      "top": "42%",
+                                                                                      "left": "50%",
+                                                                                      "width": "2px",
+                                                                                      "height": "8px",
+                                                                                      "background": "#f5f5f5",
+                                                                                      "transformOrigin": "50% 100%",
+                                                                                      "zIndex": 4,
+                                                                                      "transform": "translate(-50%, -100%) rotate(137.9deg)"
+                                                                                    }
+                                                                                  },
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": "div",
+                                                                                      "props": {
+                                                                                        "className": "wkCU-",
+                                                                                        "data-w-direction": "col",
+                                                                                        "data-w-auto-spacing": "",
+                                                                                        "style": {
+                                                                                          "height": "8px",
+                                                                                          "width": "2px",
+                                                                                          "background": "#f5f5f5",
+                                                                                          "position": "absolute",
+                                                                                          "top": "42%",
+                                                                                          "left": "50%",
+                                                                                          "transformOrigin": "50% 100%",
+                                                                                          "zIndex": 4,
+                                                                                          "transform": "translate(-50%, -100%) rotate(137.9deg)"
+                                                                                        },
+                                                                                        "data-w-component": "box"
+                                                                                      }
+                                                                                    }
+                                                                                  ]
+                                                                                }
+                                                                              ]
+                                                                            },
+                                                                            {
+                                                                              "name": "Afe",
+                                                                              "props": {
+                                                                                "$style": "{ \"position\": \"absolute\", \"top\": \"42%\", \"left\": \"50%\", \"width\": \"4px\", \"height\": \"36px\", \"background\": \"#f5f5f5\", \"borderRadius\": \"999px\", \"transformOrigin\": \"50% 100%\", \"zIndex\": 4, \"transform\": \"translate(-50%, -100%) \" + state.minute_transform + \"translateY(-5px)\" }"
+                                                                              },
+                                                                              "children": [
+                                                                                {
+                                                                                  "name": "Sn",
+                                                                                  "props": {
+                                                                                    "as": "div",
+                                                                                    "data-w-component": "box",
+                                                                                    "style": {
+                                                                                      "position": "absolute",
+                                                                                      "top": "42%",
+                                                                                      "left": "50%",
+                                                                                      "width": "4px",
+                                                                                      "height": "36px",
+                                                                                      "background": "#f5f5f5",
+                                                                                      "borderRadius": "999px",
+                                                                                      "transformOrigin": "50% 100%",
+                                                                                      "zIndex": 4,
+                                                                                      "transform": "translate(-50%, -100%) rotate(137.9deg)translateY(-5px)"
+                                                                                    }
+                                                                                  },
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": "div",
+                                                                                      "props": {
+                                                                                        "className": "wkCU-",
+                                                                                        "data-w-direction": "col",
+                                                                                        "data-w-auto-spacing": "",
+                                                                                        "style": {
+                                                                                          "height": "36px",
+                                                                                          "width": "4px",
+                                                                                          "background": "#f5f5f5",
+                                                                                          "position": "absolute",
+                                                                                          "top": "42%",
+                                                                                          "left": "50%",
+                                                                                          "borderRadius": "999px",
+                                                                                          "transformOrigin": "50% 100%",
+                                                                                          "zIndex": 4,
+                                                                                          "transform": "translate(-50%, -100%) rotate(137.9deg)translateY(-5px)"
+                                                                                        },
+                                                                                        "data-w-component": "box"
+                                                                                      }
+                                                                                    }
+                                                                                  ]
+                                                                                }
+                                                                              ]
+                                                                            },
+                                                                            {
+                                                                              "name": "Dj",
+                                                                              "props": {
+                                                                                "$when": "state.fixed_tick == null"
+                                                                              },
+                                                                              "children": [
+                                                                                {
+                                                                                  "name": "Afe",
+                                                                                  "props": {
+                                                                                    "$style": "{ \"position\": \"absolute\", \"top\": \"42%\", \"left\": \"50%\", \"width\": \"2px\", \"height\": \"50px\", \"background\": \"var(--red-300)\", \"transformOrigin\": \"50% 100%\", \"zIndex\": 5, \"transform\": \"translate(-50%, -100%) \" + state.second_transform + \"translateY(6px)\" }"
+                                                                                  },
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": "Sn",
+                                                                                      "props": {
+                                                                                        "as": "div",
+                                                                                        "data-w-component": "box",
+                                                                                        "style": {
+                                                                                          "position": "absolute",
+                                                                                          "top": "42%",
+                                                                                          "left": "50%",
+                                                                                          "width": "2px",
+                                                                                          "height": "50px",
+                                                                                          "background": "var(--red-300)",
+                                                                                          "transformOrigin": "50% 100%",
+                                                                                          "zIndex": 5,
+                                                                                          "transform": "translate(-50%, -100%) rotate(354deg)translateY(6px)"
+                                                                                        }
+                                                                                      },
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": "div",
+                                                                                          "props": {
+                                                                                            "className": "wkCU-",
+                                                                                            "data-w-direction": "col",
+                                                                                            "data-w-auto-spacing": "",
+                                                                                            "style": {
+                                                                                              "height": "50px",
+                                                                                              "width": "2px",
+                                                                                              "background": "var(--red-300)",
+                                                                                              "position": "absolute",
+                                                                                              "top": "42%",
+                                                                                              "left": "50%",
+                                                                                              "transformOrigin": "50% 100%",
+                                                                                              "zIndex": 5,
+                                                                                              "transform": "translate(-50%, -100%) rotate(354deg)translateY(6px)"
+                                                                                            },
+                                                                                            "data-w-component": "box"
+                                                                                          }
+                                                                                        }
+                                                                                      ]
+                                                                                    }
+                                                                                  ]
+                                                                                }
+                                                                              ]
+                                                                            },
+                                                                            {
+                                                                              "name": "Afe",
+                                                                              "props": {
+                                                                                "style": {
+                                                                                  "position": "absolute",
+                                                                                  "top": "42%",
+                                                                                  "left": "50%",
+                                                                                  "width": "6px",
+                                                                                  "height": "6px",
+                                                                                  "background": "white",
+                                                                                  "borderRadius": "999px",
+                                                                                  "transform": "translate(-50%, -50%)",
+                                                                                  "zIndex": 4
+                                                                                }
+                                                                              },
+                                                                              "children": [
+                                                                                {
+                                                                                  "name": "Sn",
+                                                                                  "props": {
+                                                                                    "as": "div",
+                                                                                    "data-w-component": "box",
+                                                                                    "style": {
+                                                                                      "position": "absolute",
+                                                                                      "top": "42%",
+                                                                                      "left": "50%",
+                                                                                      "width": "6px",
+                                                                                      "height": "6px",
+                                                                                      "background": "white",
+                                                                                      "borderRadius": "999px",
+                                                                                      "transform": "translate(-50%, -50%)",
+                                                                                      "zIndex": 4
+                                                                                    }
+                                                                                  },
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": "div",
+                                                                                      "props": {
+                                                                                        "className": "wkCU-",
+                                                                                        "data-w-direction": "col",
+                                                                                        "data-w-auto-spacing": "",
+                                                                                        "style": {
+                                                                                          "height": "6px",
+                                                                                          "width": "6px",
+                                                                                          "background": "white",
+                                                                                          "position": "absolute",
+                                                                                          "top": "42%",
+                                                                                          "left": "50%",
+                                                                                          "borderRadius": "999px",
+                                                                                          "transform": "translate(-50%, -50%)",
+                                                                                          "zIndex": 4
+                                                                                        },
+                                                                                        "data-w-component": "box"
+                                                                                      }
+                                                                                    }
+                                                                                  ]
+                                                                                }
+                                                                              ]
+                                                                            },
+                                                                            {
+                                                                              "name": "Afe",
+                                                                              "props": {
+                                                                                "style": {
+                                                                                  "position": "absolute",
+                                                                                  "top": "42%",
+                                                                                  "left": "50%",
+                                                                                  "width": "4px",
+                                                                                  "height": "4px",
+                                                                                  "background": "var(--orange-300)",
+                                                                                  "borderRadius": "999px",
+                                                                                  "transform": "translate(-50%, -50%)",
+                                                                                  "zIndex": 6
+                                                                                }
+                                                                              },
+                                                                              "children": [
+                                                                                {
+                                                                                  "name": "Sn",
+                                                                                  "props": {
+                                                                                    "as": "div",
+                                                                                    "data-w-component": "box",
+                                                                                    "style": {
+                                                                                      "position": "absolute",
+                                                                                      "top": "42%",
+                                                                                      "left": "50%",
+                                                                                      "width": "4px",
+                                                                                      "height": "4px",
+                                                                                      "background": "var(--orange-300)",
+                                                                                      "borderRadius": "999px",
+                                                                                      "transform": "translate(-50%, -50%)",
+                                                                                      "zIndex": 6
+                                                                                    }
+                                                                                  },
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": "div",
+                                                                                      "props": {
+                                                                                        "className": "wkCU-",
+                                                                                        "data-w-direction": "col",
+                                                                                        "data-w-auto-spacing": "",
+                                                                                        "style": {
+                                                                                          "height": "4px",
+                                                                                          "width": "4px",
+                                                                                          "background": "var(--orange-300)",
+                                                                                          "position": "absolute",
+                                                                                          "top": "42%",
+                                                                                          "left": "50%",
+                                                                                          "borderRadius": "999px",
+                                                                                          "transform": "translate(-50%, -50%)",
+                                                                                          "zIndex": 6
+                                                                                        },
+                                                                                        "data-w-component": "box"
+                                                                                      }
+                                                                                    }
+                                                                                  ]
+                                                                                }
+                                                                              ]
+                                                                            },
+                                                                            {
+                                                                              "name": "Afe",
+                                                                              "props": {
+                                                                                "style": {
+                                                                                  "position": "absolute",
+                                                                                  "top": "42%",
+                                                                                  "left": "50%",
+                                                                                  "width": "2px",
+                                                                                  "height": "2px",
+                                                                                  "background": "white",
+                                                                                  "borderRadius": "999px",
+                                                                                  "transform": "translate(-50%, -50%)",
+                                                                                  "zIndex": 6
+                                                                                }
+                                                                              },
+                                                                              "children": [
+                                                                                {
+                                                                                  "name": "Sn",
+                                                                                  "props": {
+                                                                                    "as": "div",
+                                                                                    "data-w-component": "box",
+                                                                                    "style": {
+                                                                                      "position": "absolute",
+                                                                                      "top": "42%",
+                                                                                      "left": "50%",
+                                                                                      "width": "2px",
+                                                                                      "height": "2px",
+                                                                                      "background": "white",
+                                                                                      "borderRadius": "999px",
+                                                                                      "transform": "translate(-50%, -50%)",
+                                                                                      "zIndex": 6
+                                                                                    }
+                                                                                  },
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": "div",
+                                                                                      "props": {
+                                                                                        "className": "wkCU-",
+                                                                                        "data-w-direction": "col",
+                                                                                        "data-w-auto-spacing": "",
+                                                                                        "style": {
+                                                                                          "height": "2px",
+                                                                                          "width": "2px",
+                                                                                          "background": "white",
+                                                                                          "position": "absolute",
+                                                                                          "top": "42%",
+                                                                                          "left": "50%",
+                                                                                          "borderRadius": "999px",
+                                                                                          "transform": "translate(-50%, -50%)",
+                                                                                          "zIndex": 6
+                                                                                        },
+                                                                                        "data-w-component": "box"
+                                                                                      }
+                                                                                    }
+                                                                                  ]
+                                                                                }
+                                                                              ]
+                                                                            }
+                                                                          ]
+                                                                        }
+                                                                      ]
+                                                                    }
+                                                                  ]
+                                                                }
+                                                              ]
+                                                            }
+                                                          ]
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

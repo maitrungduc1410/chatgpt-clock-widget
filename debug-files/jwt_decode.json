@@ -1,0 +1,338 @@
+{
+  "widget": {
+    "type": "Card",
+    "padding": {
+      "left": 6,
+      "right": 4,
+      "y": 5
+    },
+    "background": {
+      "light": "#1c1c1c",
+      "dark": "#1c1c1c"
+    },
+    "theme": "dark",
+    "children": [
+      {
+        "type": "Show",
+        "$when": "state.time_format == '12h'",
+        "children": [
+          {
+            "type": "RunInterval",
+            "interval": 1000,
+            "leadingTick": true,
+            "$maxTicks": "state.fixed_tick == null ? null : 1",
+            "$onTickAction": "{\n        \"patchState\": [\n          set(\"time_label\", slice(\"\" + (((int(((state.fixed_tick != null ? state.fixed_tick : tick.now) + 1000 + state.tz_offset_minutes * 60000) / 3600000) % 24 + 11) % 12) + 1), -2) + \":\" + slice(\"0\" + (int(((state.fixed_tick != null ? state.fixed_tick : tick.now) + 1000 + state.tz_offset_minutes * 60000) / 60000) % 60), -2) + \" \" + ((int(((state.fixed_tick != null ? state.fixed_tick : tick.now) + 1000 + state.tz_offset_minutes * 60000) / 3600000) % 24) >= 12 ? \"PM\" : \"AM\")),\n          set(\"second_angle\", (int(((state.fixed_tick != null ? state.fixed_tick : tick.now) + 1000 + state.tz_offset_minutes * 60000) / 1000) % 60) * 6),\n          set(\"minute_angle\", (int(((state.fixed_tick != null ? state.fixed_tick : tick.now) + 1000 + state.tz_offset_minutes * 60000) / 60000) % 60) * 6 + (int(((state.fixed_tick != null ? state.fixed_tick : tick.now) + 1000 + state.tz_offset_minutes * 60000) / 1000) % 60) * 0.1),\n          set(\"hour_angle\", (int(((state.fixed_tick != null ? state.fixed_tick : tick.now) + 1000 + state.tz_offset_minutes * 60000) / 3600000) % 12) * 30 + (int(((state.fixed_tick != null ? state.fixed_tick : tick.now) + 1000 + state.tz_offset_minutes * 60000) / 60000) % 60) * 0.5),\n          set(\"second_transform\", \"rotate(\" + ((int(((state.fixed_tick != null ? state.fixed_tick : tick.now) + 1000 + state.tz_offset_minutes * 60000) / 1000) % 60) * 6) + \"deg)\"),\n          set(\"minute_transform\", \"rotate(\" + ((int(((state.fixed_tick != null ? state.fixed_tick : tick.now) + 1000 + state.tz_offset_minutes * 60000) / 60000) % 60) * 6 + (int(((state.fixed_tick != null ? state.fixed_tick : tick.now) + 1000 + state.tz_offset_minutes * 60000) / 1000) % 60) * 0.1) + \"deg)\"),\n          set(\"hour_transform\", \"rotate(\" + ((int(((state.fixed_tick != null ? state.fixed_tick : tick.now) + 1000 + state.tz_offset_minutes * 60000) / 3600000) % 12) * 30 + (int(((state.fixed_tick != null ? state.fixed_tick : tick.now) + 1000 + state.tz_offset_minutes * 60000) / 60000) % 60) * 0.5) + \"deg)\")\n        ]\n      }"
+          }
+        ]
+      },
+      {
+        "type": "Show",
+        "$when": "state.time_format == '24h'",
+        "children": [
+          {
+            "type": "RunInterval",
+            "interval": 1000,
+            "leadingTick": true,
+            "$maxTicks": "state.fixed_tick == null ? null : 1",
+            "$onTickAction": "{\n        \"patchState\": [\n          set(\"time_label\", slice(\"0\" + (int(((state.fixed_tick != null ? state.fixed_tick : tick.now) + 1000 + state.tz_offset_minutes * 60000) / 3600000) % 24), -2) + \":\" + slice(\"0\" + (int(((state.fixed_tick != null ? state.fixed_tick : tick.now) + 1000 + state.tz_offset_minutes * 60000) / 60000) % 60), -2)),\n          set(\"second_angle\", (int(((state.fixed_tick != null ? state.fixed_tick : tick.now) + 1000 + state.tz_offset_minutes * 60000) / 1000) % 60) * 6),\n          set(\"minute_angle\", (int(((state.fixed_tick != null ? state.fixed_tick : tick.now) + 1000 + state.tz_offset_minutes * 60000) / 60000) % 60) * 6 + (int(((state.fixed_tick != null ? state.fixed_tick : tick.now) + 1000 + state.tz_offset_minutes * 60000) / 1000) % 60) * 0.1),\n          set(\"hour_angle\", (int(((state.fixed_tick != null ? state.fixed_tick : tick.now) + 1000 + state.tz_offset_minutes * 60000) / 3600000) % 12) * 30 + (int(((state.fixed_tick != null ? state.fixed_tick : tick.now) + 1000 + state.tz_offset_minutes * 60000) / 60000) % 60) * 0.5),\n          set(\"second_transform\", \"rotate(\" + ((int(((state.fixed_tick != null ? state.fixed_tick : tick.now) + 1000 + state.tz_offset_minutes * 60000) / 1000) % 60) * 6) + \"deg)\"),\n          set(\"minute_transform\", \"rotate(\" + ((int(((state.fixed_tick != null ? state.fixed_tick : tick.now) + 1000 + state.tz_offset_minutes * 60000) / 60000) % 60) * 6 + (int(((state.fixed_tick != null ? state.fixed_tick : tick.now) + 1000 + state.tz_offset_minutes * 60000) / 1000) % 60) * 0.1) + \"deg)\"),\n          set(\"hour_transform\", \"rotate(\" + ((int(((state.fixed_tick != null ? state.fixed_tick : tick.now) + 1000 + state.tz_offset_minutes * 60000) / 3600000) % 12) * 30 + (int(((state.fixed_tick != null ? state.fixed_tick : tick.now) + 1000 + state.tz_offset_minutes * 60000) / 60000) % 60) * 0.5) + \"deg)\")\n        ]\n      }"
+          }
+        ]
+      },
+      {
+        "type": "Row",
+        "align": "center",
+        "justify": "between",
+        "gap": 3,
+        "children": [
+          {
+            "type": "Col",
+            "gap": 1.5,
+            "children": [
+              {
+                "type": "Title",
+                "$value": "state.time_label",
+                "size": "xl",
+                "weight": "semibold"
+              },
+              {
+                "type": "Col",
+                "gap": 0,
+                "children": [
+                  {
+                    "type": "Text",
+                    "$value": "state.location",
+                    "color": "secondary",
+                    "size": "sm"
+                  },
+                  {
+                    "type": "Show",
+                    "$when": "state.fixed_tick == null",
+                    "children": [
+                      {
+                        "type": "Text",
+                        "$value": "state.relative_offset_label",
+                        "color": "secondary",
+                        "size": "sm"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "Box",
+            "width": 95,
+            "height": 95,
+            "radius": "full",
+            "background": "transparent",
+            "style": {
+              "position": "relative",
+              "flexShrink": 0
+            },
+            "children": [
+              {
+                "type": "Box",
+                "$style": "{ \"position\": \"absolute\", \"top\": \"8%\", \"left\": \"50%\", \"transform\": \"translate(-50%, -50%)\" }",
+                "children": [
+                  {
+                    "type": "Text",
+                    "$value": "12",
+                    "weight": "semibold",
+                    "color": "base",
+                    "size": "xs"
+                  }
+                ]
+              },
+              {
+                "type": "Box",
+                "$style": "{ \"position\": \"absolute\", \"top\": \"6%\", \"left\": \"71%\", \"transform\": \"translate(-50%, -50%)\" }",
+                "children": [
+                  {
+                    "type": "Text",
+                    "$value": "1",
+                    "weight": "semibold",
+                    "color": "base",
+                    "size": "xs"
+                  }
+                ]
+              },
+              {
+                "type": "Box",
+                "$style": "{ \"position\": \"absolute\", \"top\": \"21%\", \"left\": \"86%\", \"transform\": \"translate(-50%, -50%)\" }",
+                "children": [
+                  {
+                    "type": "Text",
+                    "$value": "2",
+                    "weight": "semibold",
+                    "color": "base",
+                    "size": "xs"
+                  }
+                ]
+              },
+              {
+                "type": "Box",
+                "$style": "{ \"position\": \"absolute\", \"top\": \"42%\", \"left\": \"92%\", \"transform\": \"translate(-50%, -50%)\" }",
+                "children": [
+                  {
+                    "type": "Text",
+                    "$value": "3",
+                    "weight": "semibold",
+                    "color": "base",
+                    "size": "xs"
+                  }
+                ]
+              },
+              {
+                "type": "Box",
+                "$style": "{ \"position\": \"absolute\", \"top\": \"63%\", \"left\": \"86%\", \"transform\": \"translate(-50%, -50%)\" }",
+                "children": [
+                  {
+                    "type": "Text",
+                    "$value": "4",
+                    "weight": "semibold",
+                    "color": "base",
+                    "size": "xs"
+                  }
+                ]
+              },
+              {
+                "type": "Box",
+                "$style": "{ \"position\": \"absolute\", \"top\": \"78%\", \"left\": \"71%\", \"transform\": \"translate(-50%, -50%)\" }",
+                "children": [
+                  {
+                    "type": "Text",
+                    "$value": "5",
+                    "weight": "semibold",
+                    "color": "base",
+                    "size": "xs"
+                  }
+                ]
+              },
+              {
+                "type": "Box",
+                "$style": "{ \"position\": \"absolute\", \"top\": \"84%\", \"left\": \"50%\", \"transform\": \"translate(-50%, -50%)\" }",
+                "children": [
+                  {
+                    "type": "Text",
+                    "$value": "6",
+                    "weight": "semibold",
+                    "color": "base",
+                    "size": "xs"
+                  }
+                ]
+              },
+              {
+                "type": "Box",
+                "$style": "{ \"position\": \"absolute\", \"top\": \"78%\", \"left\": \"29%\", \"transform\": \"translate(-50%, -50%)\" }",
+                "children": [
+                  {
+                    "type": "Text",
+                    "$value": "7",
+                    "weight": "semibold",
+                    "color": "base",
+                    "size": "xs"
+                  }
+                ]
+              },
+              {
+                "type": "Box",
+                "$style": "{ \"position\": \"absolute\", \"top\": \"63%\", \"left\": \"14%\", \"transform\": \"translate(-50%, -50%)\" }",
+                "children": [
+                  {
+                    "type": "Text",
+                    "$value": "8",
+                    "weight": "semibold",
+                    "color": "base",
+                    "size": "xs"
+                  }
+                ]
+              },
+              {
+                "type": "Box",
+                "$style": "{ \"position\": \"absolute\", \"top\": \"42%\", \"left\": \"8%\", \"transform\": \"translate(-50%, -50%)\" }",
+                "children": [
+                  {
+                    "type": "Text",
+                    "$value": "9",
+                    "weight": "semibold",
+                    "color": "base",
+                    "size": "xs"
+                  }
+                ]
+              },
+              {
+                "type": "Box",
+                "$style": "{ \"position\": \"absolute\", \"top\": \"21%\", \"left\": \"14%\", \"transform\": \"translate(-50%, -50%)\" }",
+                "children": [
+                  {
+                    "type": "Text",
+                    "$value": "10",
+                    "weight": "semibold",
+                    "color": "base",
+                    "size": "xs"
+                  }
+                ]
+              },
+              {
+                "type": "Box",
+                "$style": "{ \"position\": \"absolute\", \"top\": \"6%\", \"left\": \"29%\", \"transform\": \"translate(-50%, -50%)\" }",
+                "children": [
+                  {
+                    "type": "Text",
+                    "$value": "11",
+                    "weight": "semibold",
+                    "color": "base",
+                    "size": "xs"
+                  }
+                ]
+              },
+              {
+                "type": "Box",
+                "$style": "{ \"position\": \"absolute\", \"top\": \"42%\", \"left\": \"50%\", \"width\": \"2px\", \"height\": \"8px\", \"background\": \"#f5f5f5\", \"transformOrigin\": \"50% 100%\", \"zIndex\": 4, \"transform\": \"translate(-50%, -100%) \" + state.hour_transform }"
+              },
+              {
+                "type": "Box",
+                "$style": "{ \"position\": \"absolute\", \"top\": \"42%\", \"left\": \"50%\", \"width\": \"4px\", \"height\": \"24px\", \"background\": \"#f5f5f5\", \"borderRadius\": \"999px\", \"transformOrigin\": \"50% 100%\", \"zIndex\": 4, \"transform\": \"translate(-50%, -100%) \" + state.hour_transform + \"translateY(-5px)\" }"
+              },
+              {
+                "type": "Box",
+                "$style": "{ \"position\": \"absolute\", \"top\": \"42%\", \"left\": \"50%\", \"width\": \"2px\", \"height\": \"8px\", \"background\": \"#f5f5f5\", \"transformOrigin\": \"50% 100%\", \"zIndex\": 4, \"transform\": \"translate(-50%, -100%) \" + state.minute_transform }"
+              },
+              {
+                "type": "Box",
+                "$style": "{ \"position\": \"absolute\", \"top\": \"42%\", \"left\": \"50%\", \"width\": \"4px\", \"height\": \"36px\", \"background\": \"#f5f5f5\", \"borderRadius\": \"999px\", \"transformOrigin\": \"50% 100%\", \"zIndex\": 4, \"transform\": \"translate(-50%, -100%) \" + state.minute_transform + \"translateY(-5px)\" }"
+              },
+              {
+                "type": "Show",
+                "$when": "state.fixed_tick == null",
+                "children": [
+                  {
+                    "type": "Box",
+                    "$style": "{ \"position\": \"absolute\", \"top\": \"42%\", \"left\": \"50%\", \"width\": \"2px\", \"height\": \"50px\", \"background\": \"var(--red-300)\", \"transformOrigin\": \"50% 100%\", \"zIndex\": 5, \"transform\": \"translate(-50%, -100%) \" + state.second_transform + \"translateY(6px)\" }"
+                  }
+                ]
+              },
+              {
+                "type": "Box",
+                "style": {
+                  "position": "absolute",
+                  "top": "42%",
+                  "left": "50%",
+                  "width": "6px",
+                  "height": "6px",
+                  "background": "white",
+                  "borderRadius": "999px",
+                  "transform": "translate(-50%, -50%)",
+                  "zIndex": 4
+                }
+              },
+              {
+                "type": "Box",
+                "style": {
+                  "position": "absolute",
+                  "top": "42%",
+                  "left": "50%",
+                  "width": "4px",
+                  "height": "4px",
+                  "background": "var(--orange-300)",
+                  "borderRadius": "999px",
+                  "transform": "translate(-50%, -50%)",
+                  "zIndex": 6
+                }
+              },
+              {
+                "type": "Box",
+                "style": {
+                  "position": "absolute",
+                  "top": "42%",
+                  "left": "50%",
+                  "width": "2px",
+                  "height": "2px",
+                  "background": "white",
+                  "borderRadius": "999px",
+                  "transform": "translate(-50%, -50%)",
+                  "zIndex": 6
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "initialState": {
+      "location": "Singapore, Singapore (SGT)",
+      "time_format": "24h",
+      "tz_offset_minutes": 480,
+      "relative_offset_label": "Today, +0hrs",
+      "fixed_tick": null,
+      "time_label": "23:57",
+      "hour_angle": 358.5,
+      "minute_angle": 342.9,
+      "second_angle": 54,
+      "hour_transform": "rotate(358.5deg)",
+      "minute_transform": "rotate(342.9deg)",
+      "second_transform": "rotate(54deg)"
+    }
+  }
+}
